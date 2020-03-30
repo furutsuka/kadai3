@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kadai</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+
+  <body>
+<header>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <nav class='nav navbar-nav navbar-left' >
+      <span>Bookers</span>
+    </nav>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+    <nav>
+          <li><%= link_to "Home", user_path(current_user.id) %></li>
+          <li><%= link_to "User", users_path %></li>
+          <li><%= link_to "Books", new_user_session_path %></li>
+          <li><%= link_to "log out", destroy_user_session_path, method: :delete %></li>
+    </nav>
+      <% else %>
+      <nav>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "about", home_about_path %></li>
+          <li><%= link_to "Log in", new_user_session_path %></li>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+      </nav>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+    <%= yield %>
+  </body>
+</html>
