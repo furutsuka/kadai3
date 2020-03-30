@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+
+  <body>
+    <div>
+    <header class="navbar navbar-inverse">
+          <nav class='nav navbar-nav navbar-left' >
+            <span>Bookers</span>
+          </nav>
+            <ul class="nav navbar-nav navbar-right">
+              <% if user_signed_in? %>
+          <nav>
+                <li class="glyphicon glyphicon-home home"><%= link_to "Home", user_path(current_user.id) %></li>
+                <li class="glyphicon glyphicon-link about"><%= link_to "User", users_path %></li>
+                <li class="glyphicon glyphicon-edit sign_up"><%= link_to "Books", books_path %></li>
+                <li class="glyphicon glyphicon-log-in sign_in"><%= link_to "log out", destroy_user_session_path, method: :delete %></li>
+          </nav>
+            <% else %>
+            <nav>
+                <li class="glyphicon glyphicon-home home"><%= link_to "Home", root_path %></li>
+                <li class="glyphicon glyphicon-user users"><%= link_to "about", home_about_path %></li>
+                <li class="glyphicon glyphicon-book books"><%= link_to "Log in", new_user_session_path %></li>
+                <li class="glyphicon glyphicon-log-out logout"><%= link_to "Sign up", new_user_registration_path %></li>
+                </ul>
+            </nav>
+        <% end %>
+      </header>
+      </div>
+<%= yield %>
+  </body>
+</html>
